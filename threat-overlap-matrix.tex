@@ -1,0 +1,220 @@
+\documentclass[border=10pt]{standalone}
+\usepackage[dvipsnames,cmyk]{xcolor}
+\usepackage[normalem]{ulem}
+\usepackage{tikz}
+\usetikzlibrary{positioning,chains,fit,shapes,calc,matrix}
+
+\definecolor{same}{cmyk}{0,0,0,0.2}
+\definecolor{jam}{cmyk}{0,0,0,0.5}
+\definecolor{identity}{cmyk}{1,0,0,0}
+\definecolor{body}{cmyk}{0,1,0,0}
+\definecolor{comms}{cmyk}{0,0,1,0}
+\definecolor{patterns}{cmyk}{0,0,0,0.8}
+\colorlet{nothing}{white}
+\colorlet{identityandcomms}{white}
+\colorlet{identityandpatterns}{white}
+\colorlet{bodyandcomms}{white}
+\colorlet{bodyandpatterns}{white}
+\colorlet{bodyandidentity}{white}
+
+\tikzset{
+table/.style={
+  matrix of nodes,
+  row sep=-\pgflinewidth,
+  column sep=-\pgflinewidth,
+  nodes={rectangle,draw=black,text width=1.25ex,align=center},
+  text depth=0.25ex,
+  text height=1ex,
+  nodes in empty cells
+  },
+texto/.style={font=\footnotesize\sffamily},
+title/.style={font=\small\sffamily}
+}
+\newcommand\CellText[2]{%
+  \node[texto,left=of mat#1,anchor=east]
+  at (mat#1.west)
+  {#2};
+}
+
+\newcommand\SlText[2]{%
+  \node[texto,left=of mat#1,anchor=west,rotate=75]
+  at ([xshift=3ex]mat#1.north)
+  {#2};
+}
+
+\newcommand\CellTextRight[2]{%
+  \node[texto,left=of mat#1,anchor=west,align=left]
+  at ([xshift=7ex]mat#1.west)
+  {#2};
+}
+
+\newcommand\RowTitle[2]{%
+\node[title,above=of mat#1,anchor=north,text width=4cm]
+  at ([yshift=11ex,xshift=12ex]mat#1.north)
+  {#2};
+}
+
+\begin{document}
+
+\begin{tikzpicture}[node distance =0pt and 0.5cm]
+
+\matrix[table] (mat11)
+{
+|[fill=same]| & |[fill=jam]| & |[fill=jam]| &  &  &  & |[fill=nothing]| &  &  &  &  &  &  & |[fill=nothing]| &  &  &  & \\
+|[fill=jam]| & |[fill=same]| & |[fill=jam]| &  &  &  & |[fill=nothing]| &  &  &  &  &  &  & |[fill=nothing]| &  &  &  & \\
+|[fill=jam]| & |[fill=jam]| & |[fill=same]| &  &  &  & |[fill=nothing]| &  &  &  &  &  &  & |[fill=nothing]| &  &  &  & \\
+ &  &  & |[fill=same]| & |[fill=patterns]| & |[fill=identity]| & |[fill=nothing]| & |[fill=identity]| & |[fill=identity]| &  & |[fill=identity]| & |[fill=identity]| &  & |[fill=nothing]| & |[fill=identity]| & |[fill=identity]| & |[fill=patterns]| & \\
+ &  &  & |[fill=identityandpatterns]| & |[fill=same]| & |[fill=identity]| & |[fill=nothing]| & |[fill=identity]| & |[fill=identity]| &  & |[fill=identity]| & |[fill=identity]| &  & |[fill=nothing]| & |[fill=identity]| & |[fill=identity]| & |[fill=patterns]| & \\
+ &  &  & |[fill=identityandpatterns]| & |[fill=patterns]| & |[fill=same]| & |[fill=nothing]| & |[fill=identity]| & |[fill=identity]| &  & |[fill=identity]| & |[fill=identity]| &  & |[fill=nothing]| & |[fill=identity]| & |[fill=identity]| & |[fill=patterns]| & |[fill=body]|\\
+|[fill=nothing]| & |[fill=nothing]| & |[fill=nothing]| & |[fill=nothing]| & |[fill=nothing]| & |[fill=nothing]| & |[fill=same]| & |[fill=nothing]| & |[fill=nothing]| & |[fill=nothing]| & |[fill=nothing]| & |[fill=nothing]| & |[fill=nothing]| & |[fill=nothing]| & |[fill=nothing]| & |[fill=nothing]| & |[fill=nothing]| & |[fill=nothing]|\\
+ &  &  & |[fill=identity]| &  & |[fill=bodyandidentity]| & |[fill=nothing]| & |[fill=same]| & |[fill=identityandcomms]| & |[fill=comms]| & |[fill=identityandcomms]| & |[fill=identityandcomms]| & |[fill=comms]| & |[fill=nothing]| & |[fill=identityandcomms]| & |[fill=identityandcomms]| &  & |[fill=body]|\\
+ &  &  & |[fill=identity]| &  & |[fill=bodyandidentity]| & |[fill=nothing]| & |[fill=identity]| & |[fill=same]| & |[fill=comms]| & |[fill=identityandcomms]| & |[fill=identityandcomms]| & |[fill=comms]| & |[fill=nothing]| & |[fill=identityandcomms]| & |[fill=identityandcomms]| &  & |[fill=body]|\\
+ &  &  & |[fill=identity]| &  & |[fill=bodyandidentity]| & |[fill=nothing]| & |[fill=identity]| & |[fill=identityandcomms]| & |[fill=same]| & |[fill=identityandcomms]| & |[fill=identityandcomms]| & |[fill=comms]| & |[fill=nothing]| & |[fill=identityandcomms]| & |[fill=identityandcomms]| &  & |[fill=body]|\\
+ &  &  & |[fill=identity]| &  & |[fill=bodyandidentity]| & |[fill=nothing]| & |[fill=identity]| & |[fill=identityandcomms]| & |[fill=comms]| & |[fill=same]| & |[fill=identityandcomms]| & |[fill=comms]| & |[fill=nothing]| & |[fill=identityandcomms]| & |[fill=identityandcomms]| &  & |[fill=body]|\\
+ &  &  & |[fill=identity]| &  & |[fill=bodyandidentity]| & |[fill=nothing]| & |[fill=identity]| & |[fill=identityandcomms]| & |[fill=comms]| & |[fill=identityandcomms]| & |[fill=same]| & |[fill=comms]| & |[fill=nothing]| & |[fill=identityandcomms]| & |[fill=identityandcomms]| &  & |[fill=body]|\\
+ &  &  & |[fill=identity]| &  & |[fill=bodyandidentity]| & |[fill=nothing]| & |[fill=identity]| & |[fill=identityandcomms]| & |[fill=comms]| & |[fill=identityandcomms]| & |[fill=identityandcomms]| & |[fill=same]| & |[fill=nothing]| & |[fill=identityandcomms]| & |[fill=identityandcomms]| &  & |[fill=body]|\\
+|[fill=nothing]| & |[fill=nothing]| & |[fill=nothing]| & |[fill=nothing]| & |[fill=nothing]| & |[fill=nothing]| & |[fill=nothing]| & |[fill=nothing]| & |[fill=nothing]| & |[fill=nothing]| & |[fill=nothing]| & |[fill=nothing]| & |[fill=nothing]| & |[fill=same]| & |[fill=nothing]| & |[fill=nothing]| & |[fill=nothing]| & |[fill=nothing]|\\
+ &  &  & |[fill=identity]| &  & |[fill=bodyandidentity]| & |[fill=nothing]| & |[fill=identity]| & |[fill=identityandcomms]| & |[fill=comms]| & |[fill=identityandcomms]| & |[fill=identityandcomms]| & |[fill=comms]| & |[fill=nothing]| & |[fill=same]| & |[fill=identityandcomms]| &  & |[fill=body]|\\
+ &  &  & |[fill=identity]| &  & |[fill=bodyandidentity]| & |[fill=nothing]| & |[fill=identity]| & |[fill=identityandcomms]| & |[fill=comms]| & |[fill=identityandcomms]| & |[fill=identityandcomms]| & |[fill=comms]| & |[fill=nothing]| & |[fill=identityandcomms]| & |[fill=same]| &  & |[fill=body]|\\
+ &  &  & |[fill=patterns]| & |[fill=patterns]| &  & |[fill=nothing]| &  &  &  &  &  &  & |[fill=nothing]| &  &  & |[fill=same]| & \\
+ &  &  &  &  & |[fill=body]| & |[fill=nothing]| &  &  &  &  &  &  & |[fill=nothing]| &  &  &  & |[fill=same]|\\
+};
+\draw[fill=identity] (mat11-5-4.north west) -- (mat11-5-4.south west) -- (mat11-5-4.south east) -- cycle;
+\draw[fill=patterns] (mat11-5-4.north west) -- (mat11-5-4.north east) -- (mat11-5-4.south east) -- cycle;
+\draw[fill=identity] (mat11-6-4.north west) -- (mat11-6-4.south west) -- (mat11-6-4.south east) -- cycle;
+\draw[fill=patterns] (mat11-6-4.north west) -- (mat11-6-4.north east) -- (mat11-6-4.south east) -- cycle;
+\draw[fill=identity] (mat11-8-6.north west) -- (mat11-8-6.south west) -- (mat11-8-6.south east) -- cycle;
+\draw[fill=body] (mat11-8-6.north west) -- (mat11-8-6.north east) -- (mat11-8-6.south east) -- cycle;
+\draw[fill=identity] (mat11-8-9.north west) -- (mat11-8-9.south west) -- (mat11-8-9.south east) -- cycle;
+\draw[fill=comms] (mat11-8-9.north west) -- (mat11-8-9.north east) -- (mat11-8-9.south east) -- cycle;
+\draw[fill=identity] (mat11-8-11.north west) -- (mat11-8-11.south west) -- (mat11-8-11.south east) -- cycle;
+\draw[fill=comms] (mat11-8-11.north west) -- (mat11-8-11.north east) -- (mat11-8-11.south east) -- cycle;
+\draw[fill=identity] (mat11-8-12.north west) -- (mat11-8-12.south west) -- (mat11-8-12.south east) -- cycle;
+\draw[fill=comms] (mat11-8-12.north west) -- (mat11-8-12.north east) -- (mat11-8-12.south east) -- cycle;
+\draw[fill=identity] (mat11-8-15.north west) -- (mat11-8-15.south west) -- (mat11-8-15.south east) -- cycle;
+\draw[fill=comms] (mat11-8-15.north west) -- (mat11-8-15.north east) -- (mat11-8-15.south east) -- cycle;
+\draw[fill=identity] (mat11-8-16.north west) -- (mat11-8-16.south west) -- (mat11-8-16.south east) -- cycle;
+\draw[fill=comms] (mat11-8-16.north west) -- (mat11-8-16.north east) -- (mat11-8-16.south east) -- cycle;
+\draw[fill=identity] (mat11-9-6.north west) -- (mat11-9-6.south west) -- (mat11-9-6.south east) -- cycle;
+\draw[fill=body] (mat11-9-6.north west) -- (mat11-9-6.north east) -- (mat11-9-6.south east) -- cycle;
+\draw[fill=identity] (mat11-9-11.north west) -- (mat11-9-11.south west) -- (mat11-9-11.south east) -- cycle;
+\draw[fill=comms] (mat11-9-11.north west) -- (mat11-9-11.north east) -- (mat11-9-11.south east) -- cycle;
+\draw[fill=identity] (mat11-9-12.north west) -- (mat11-9-12.south west) -- (mat11-9-12.south east) -- cycle;
+\draw[fill=comms] (mat11-9-12.north west) -- (mat11-9-12.north east) -- (mat11-9-12.south east) -- cycle;
+\draw[fill=identity] (mat11-9-15.north west) -- (mat11-9-15.south west) -- (mat11-9-15.south east) -- cycle;
+\draw[fill=comms] (mat11-9-15.north west) -- (mat11-9-15.north east) -- (mat11-9-15.south east) -- cycle;
+\draw[fill=identity] (mat11-9-16.north west) -- (mat11-9-16.south west) -- (mat11-9-16.south east) -- cycle;
+\draw[fill=comms] (mat11-9-16.north west) -- (mat11-9-16.north east) -- (mat11-9-16.south east) -- cycle;
+\draw[fill=identity] (mat11-10-6.north west) -- (mat11-10-6.south west) -- (mat11-10-6.south east) -- cycle;
+\draw[fill=body] (mat11-10-6.north west) -- (mat11-10-6.north east) -- (mat11-10-6.south east) -- cycle;
+\draw[fill=identity] (mat11-10-9.north west) -- (mat11-10-9.south west) -- (mat11-10-9.south east) -- cycle;
+\draw[fill=comms] (mat11-10-9.north west) -- (mat11-10-9.north east) -- (mat11-10-9.south east) -- cycle;
+\draw[fill=identity] (mat11-10-11.north west) -- (mat11-10-11.south west) -- (mat11-10-11.south east) -- cycle;
+\draw[fill=comms] (mat11-10-11.north west) -- (mat11-10-11.north east) -- (mat11-10-11.south east) -- cycle;
+\draw[fill=identity] (mat11-10-12.north west) -- (mat11-10-12.south west) -- (mat11-10-12.south east) -- cycle;
+\draw[fill=comms] (mat11-10-12.north west) -- (mat11-10-12.north east) -- (mat11-10-12.south east) -- cycle;
+\draw[fill=identity] (mat11-10-15.north west) -- (mat11-10-15.south west) -- (mat11-10-15.south east) -- cycle;
+\draw[fill=comms] (mat11-10-15.north west) -- (mat11-10-15.north east) -- (mat11-10-15.south east) -- cycle;
+\draw[fill=identity] (mat11-10-16.north west) -- (mat11-10-16.south west) -- (mat11-10-16.south east) -- cycle;
+\draw[fill=comms] (mat11-10-16.north west) -- (mat11-10-16.north east) -- (mat11-10-16.south east) -- cycle;
+\draw[fill=identity] (mat11-11-6.north west) -- (mat11-11-6.south west) -- (mat11-11-6.south east) -- cycle;
+\draw[fill=body] (mat11-11-6.north west) -- (mat11-11-6.north east) -- (mat11-11-6.south east) -- cycle;
+\draw[fill=identity] (mat11-11-9.north west) -- (mat11-11-9.south west) -- (mat11-11-9.south east) -- cycle;
+\draw[fill=comms] (mat11-11-9.north west) -- (mat11-11-9.north east) -- (mat11-11-9.south east) -- cycle;
+\draw[fill=identity] (mat11-11-12.north west) -- (mat11-11-12.south west) -- (mat11-11-12.south east) -- cycle;
+\draw[fill=comms] (mat11-11-12.north west) -- (mat11-11-12.north east) -- (mat11-11-12.south east) -- cycle;
+\draw[fill=identity] (mat11-11-15.north west) -- (mat11-11-15.south west) -- (mat11-11-15.south east) -- cycle;
+\draw[fill=comms] (mat11-11-15.north west) -- (mat11-11-15.north east) -- (mat11-11-15.south east) -- cycle;
+\draw[fill=identity] (mat11-11-16.north west) -- (mat11-11-16.south west) -- (mat11-11-16.south east) -- cycle;
+\draw[fill=comms] (mat11-11-16.north west) -- (mat11-11-16.north east) -- (mat11-11-16.south east) -- cycle;
+\draw[fill=identity] (mat11-12-6.north west) -- (mat11-12-6.south west) -- (mat11-12-6.south east) -- cycle;
+\draw[fill=body] (mat11-12-6.north west) -- (mat11-12-6.north east) -- (mat11-12-6.south east) -- cycle;
+\draw[fill=identity] (mat11-12-9.north west) -- (mat11-12-9.south west) -- (mat11-12-9.south east) -- cycle;
+\draw[fill=comms] (mat11-12-9.north west) -- (mat11-12-9.north east) -- (mat11-12-9.south east) -- cycle;
+\draw[fill=identity] (mat11-12-11.north west) -- (mat11-12-11.south west) -- (mat11-12-11.south east) -- cycle;
+\draw[fill=comms] (mat11-12-11.north west) -- (mat11-12-11.north east) -- (mat11-12-11.south east) -- cycle;
+\draw[fill=identity] (mat11-12-15.north west) -- (mat11-12-15.south west) -- (mat11-12-15.south east) -- cycle;
+\draw[fill=comms] (mat11-12-15.north west) -- (mat11-12-15.north east) -- (mat11-12-15.south east) -- cycle;
+\draw[fill=identity] (mat11-12-16.north west) -- (mat11-12-16.south west) -- (mat11-12-16.south east) -- cycle;
+\draw[fill=comms] (mat11-12-16.north west) -- (mat11-12-16.north east) -- (mat11-12-16.south east) -- cycle;
+\draw[fill=identity] (mat11-13-6.north west) -- (mat11-13-6.south west) -- (mat11-13-6.south east) -- cycle;
+\draw[fill=body] (mat11-13-6.north west) -- (mat11-13-6.north east) -- (mat11-13-6.south east) -- cycle;
+\draw[fill=identity] (mat11-13-9.north west) -- (mat11-13-9.south west) -- (mat11-13-9.south east) -- cycle;
+\draw[fill=comms] (mat11-13-9.north west) -- (mat11-13-9.north east) -- (mat11-13-9.south east) -- cycle;
+\draw[fill=identity] (mat11-13-11.north west) -- (mat11-13-11.south west) -- (mat11-13-11.south east) -- cycle;
+\draw[fill=comms] (mat11-13-11.north west) -- (mat11-13-11.north east) -- (mat11-13-11.south east) -- cycle;
+\draw[fill=identity] (mat11-13-12.north west) -- (mat11-13-12.south west) -- (mat11-13-12.south east) -- cycle;
+\draw[fill=comms] (mat11-13-12.north west) -- (mat11-13-12.north east) -- (mat11-13-12.south east) -- cycle;
+\draw[fill=identity] (mat11-13-15.north west) -- (mat11-13-15.south west) -- (mat11-13-15.south east) -- cycle;
+\draw[fill=comms] (mat11-13-15.north west) -- (mat11-13-15.north east) -- (mat11-13-15.south east) -- cycle;
+\draw[fill=identity] (mat11-13-16.north west) -- (mat11-13-16.south west) -- (mat11-13-16.south east) -- cycle;
+\draw[fill=comms] (mat11-13-16.north west) -- (mat11-13-16.north east) -- (mat11-13-16.south east) -- cycle;
+\draw[fill=identity] (mat11-15-6.north west) -- (mat11-15-6.south west) -- (mat11-15-6.south east) -- cycle;
+\draw[fill=body] (mat11-15-6.north west) -- (mat11-15-6.north east) -- (mat11-15-6.south east) -- cycle;
+\draw[fill=identity] (mat11-15-9.north west) -- (mat11-15-9.south west) -- (mat11-15-9.south east) -- cycle;
+\draw[fill=comms] (mat11-15-9.north west) -- (mat11-15-9.north east) -- (mat11-15-9.south east) -- cycle;
+\draw[fill=identity] (mat11-15-11.north west) -- (mat11-15-11.south west) -- (mat11-15-11.south east) -- cycle;
+\draw[fill=comms] (mat11-15-11.north west) -- (mat11-15-11.north east) -- (mat11-15-11.south east) -- cycle;
+\draw[fill=identity] (mat11-15-12.north west) -- (mat11-15-12.south west) -- (mat11-15-12.south east) -- cycle;
+\draw[fill=comms] (mat11-15-12.north west) -- (mat11-15-12.north east) -- (mat11-15-12.south east) -- cycle;
+\draw[fill=identity] (mat11-15-16.north west) -- (mat11-15-16.south west) -- (mat11-15-16.south east) -- cycle;
+\draw[fill=comms] (mat11-15-16.north west) -- (mat11-15-16.north east) -- (mat11-15-16.south east) -- cycle;
+\draw[fill=identity] (mat11-16-6.north west) -- (mat11-16-6.south west) -- (mat11-16-6.south east) -- cycle;
+\draw[fill=body] (mat11-16-6.north west) -- (mat11-16-6.north east) -- (mat11-16-6.south east) -- cycle;
+\draw[fill=identity] (mat11-16-9.north west) -- (mat11-16-9.south west) -- (mat11-16-9.south east) -- cycle;
+\draw[fill=comms] (mat11-16-9.north west) -- (mat11-16-9.north east) -- (mat11-16-9.south east) -- cycle;
+\draw[fill=identity] (mat11-16-11.north west) -- (mat11-16-11.south west) -- (mat11-16-11.south east) -- cycle;
+\draw[fill=comms] (mat11-16-11.north west) -- (mat11-16-11.north east) -- (mat11-16-11.south east) -- cycle;
+\draw[fill=identity] (mat11-16-12.north west) -- (mat11-16-12.south west) -- (mat11-16-12.south east) -- cycle;
+\draw[fill=comms] (mat11-16-12.north west) -- (mat11-16-12.north east) -- (mat11-16-12.south east) -- cycle;
+\draw[fill=identity] (mat11-16-15.north west) -- (mat11-16-15.south west) -- (mat11-16-15.south east) -- cycle;
+\draw[fill=comms] (mat11-16-15.north west) -- (mat11-16-15.north east) -- (mat11-16-15.south east) -- cycle;
+
+\SlText{11-1-1} {Physically Attached Sensor} \CellText{11-1-1} {Physically Attached Sensor}
+\SlText{11-1-2} {Fleet Mgmt and Black Box} \CellText{11-2-1} {Fleet Mgmt and Black Box}
+\SlText{11-1-3} {Smartphone GNSS Sensor} \CellText{11-3-1} {Smartphone GNSS Sensor}
+\SlText{11-1-4} {ANPR} \CellText{11-4-1} {ANPR}
+\SlText{11-1-5} {Visual Tracking} \CellText{11-5-1} {Visual Tracking}
+\SlText{11-1-6} {Location Based Services} \CellText{11-6-1} {Location Based Services}
+\SlText{11-1-7} {CAN Bus Access} \CellText{11-7-1} {CAN Bus Access}
+\SlText{11-1-8} {Vehicular Sensor Network} \CellText{11-8-1} {Vehicular Sensor Network}
+\SlText{11-1-9} {PRKE} \CellText{11-9-1} {PRKE}
+\SlText{11-1-10} {Signal Direction Context} \CellText{11-10-1} {Signal Direction Context}
+\SlText{11-1-11} {Eavesdrop TDMA MAC Slots} \CellText{11-11-1} {Eavesdrop TDMA MAC Slots}
+\SlText{11-1-12} {Eavesdrop V2X} \CellText{11-12-1} {Eavesdrop V2X}
+\SlText{11-1-13} {Cell Tower Localisation} \CellText{11-13-1} {Cell Tower Localisation}
+\SlText{11-1-14} {ISMI Catchers} \CellText{11-14-1} {ISMI Catchers}
+\SlText{11-1-15} {Eavesdrop Bluetooth} \CellText{11-15-1} {Eavesdrop Bluetooth}
+\SlText{11-1-16} {Eavesdrop WiFI} \CellText{11-16-1} {Eavesdrop WiFI}
+\SlText{11-1-17} {Driving Style and Behaviour} \CellText{11-17-1} {Driving Style and Behaviour}
+\SlText{11-1-18} {Database Leak} \CellText{11-18-1} {Database Leak}
+
+\matrix[table,right=of mat11] (mat12)
+{
+|[fill=jam]| \\
+|[fill=identity]| \\
+|[fill=body]| \\
+|[fill=comms]| \\
+|[fill=patterns]| \\[1mm]
+|[fill=same]| \\
+|[fill=nothing]| \\
+};
+
+\RowTitle{12}{Legend: How may aspects of existing solution for threat on left need to be adjusted to consider threat on top};
+\CellTextRight{12-1-1}{Jam Signals};
+\CellTextRight{12-2-1}{Perturb Identity};
+\CellTextRight{12-3-1}{Perturb Contents};
+\CellTextRight{12-4-1}{Change Communications};
+\CellTextRight{12-5-1}{Change Behaviour};
+\CellTextRight{12-6-1}{Same Technique};
+\CellTextRight{12-7-1}{No Solution / Interaction};
+
+\node[texto,left=of mat11,anchor=west,rotate=90]
+  at ([xshift=-26ex]mat11.west)
+  {Existing Privacy Solution For:};
+  
+\node[texto,above=of mat11,anchor=north]
+  at ([yshift=28ex]mat11.north)
+  {Want to Extend to Consider Privacy For:};
+\end{tikzpicture}
+\end{document}

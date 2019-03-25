@@ -1,0 +1,57 @@
+\documentclass[border=0pt]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{positioning,chains,fit,shapes,calc}
+\begin{document}
+\large
+
+\definecolor{myblue}{RGB}{80,80,160}
+\definecolor{mygreen}{RGB}{80,160,80}
+
+\begin{tikzpicture}[thick,
+  fsnode/.style={draw,circle,fill=myblue,text=white},
+  ssnode/.style={draw,circle,fill=mygreen},
+  ->,shorten >= 3pt,shorten <= 3pt
+]
+
+% the vertices of Threats
+\begin{scope}[local bounding box=scope1,start chain=going below,node distance=5mm]
+\node[fsnode,on chain] (T0) [label=left: Direct Access] {$\mathbf{T_A}$};
+\node[fsnode,on chain] (T1) [label=left: Visual Identification] {$\mathbf{T_B}$};
+\node[fsnode,on chain] (T2) [label=left: Internal Vehicle Communication] {$\mathbf{T_D}$};
+\node[fsnode,on chain] (T3) [label=left: External Vehicle Communication] {$\mathbf{T_E}$};
+\node[fsnode,on chain] (T4) [label=left: Non-vehicle Communication] {$\mathbf{T_F}$};
+\node[fsnode,on chain] (T5) [label=left: Behavioural] {$\mathbf{T_G}$};
+\node[fsnode,on chain] (T6) [label=left: Services] {$\mathbf{T_C}$};
+\node[fsnode,on chain] (T7) [label=left: Historical] {$\mathbf{T_H}$};
+\end{scope}
+
+% the vertices of Solutions
+\begin{scope}[local bounding box=scope2,start chain=going below,node distance=5mm,xshift=3.4cm]
+\node[ssnode,on chain] (S1) [label=right: Jam Signals] {$\mathbf{P_A}$};
+\node[ssnode,on chain] (S2) [label=right: Perturb Identity] {$\mathbf{P_B}$};
+\node[ssnode,on chain] (S4) [label=right: Perturb Data] {$\mathbf{P_C}$};
+\node[ssnode,on chain] (S8) [label=right: Change Communication Patterns] {$\mathbf{P_D}$};
+\node[ssnode,on chain] (S16) [label=right: Change Behavioural Patterns] {$\mathbf{P_E}$};
+\end{scope}
+
+\draw (T0) -- (S1);
+\draw (T1) -- (S2);
+\draw (T1) -- (S16);
+\draw (T2) -- (S2);
+\draw (T2) -- (S4);
+\draw (T2) -- (S8);
+\draw (T3) -- (S2);
+\draw (T3) -- (S4);
+\draw (T3) -- (S8);
+\draw (T4) -- (S2);
+\draw (T4) -- (S4);
+\draw (T4) -- (S8);
+\draw (T5) -- (S16);
+\draw (T6) -- (S2);
+\draw (T6) -- (S4);
+\draw (T6) -- (S16);
+\draw (T7) -- (S4);
+
+\end{tikzpicture}
+
+\end{document}
